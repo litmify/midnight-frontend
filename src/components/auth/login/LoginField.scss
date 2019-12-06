@@ -1,0 +1,40 @@
+.login__container {
+  width: 30%;
+}
+
+.login__card {
+  width: 100%;
+}
+
+.login__header {
+  border-bottom: 3px solid #eeeeee;
+  font-weight: 700;
+  font-size: 2rem;
+  padding-bottom: 0.1rem;
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.login__divider {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.login__button {
+  margin-top: 1rem;
+}
+
+.login__a {
+  color: #333333;
+}
+
+.login__description {
+  font-size: 1rem;
+  text-align: left;
+  margin-bottom: 0.5rem;
+
+  &--error {
+    margin-top: 1rem;
+    margin-bottom: 0;
+  }
+}

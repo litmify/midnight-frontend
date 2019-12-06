@@ -3,7 +3,7 @@ import './Navigation.scss';
 
 const Navigation = function() {
   return (
-    <nav className="navbar navbar__container container level">
+    <nav className="navbar__container navbar is-fixed-top container level">
       <div className="navbar__title level-left">
         <a className="navbar__text navbar__text--title level-item" href="/">midnight</a>
       </div>
