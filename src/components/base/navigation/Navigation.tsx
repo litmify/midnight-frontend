@@ -1,23 +1,22 @@
 import * as React from 'react';
 import './Navigation.scss';
 
-import { Navbar, Nav, Container, Button } from 'react-bootstrap';
-
 const Navigation = function() {
   return (
-    <Navbar className="app-navbar">
-      <Container>
-        <Navbar.Brand href="/">midnight</Navbar.Brand>
-        <Navbar.Toggle />
-        <Navbar.Collapse className="justify-content-end">
-          <Nav.Link href="/auth/login">
-            <Button variant="light">
-              Log in
-            </Button>
-          </Nav.Link>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+    <nav className="navbar navbar__container container level">
+      <div className="navbar__title level-left">
+        <a className="navbar__text navbar__text--title level-item" href="/">midnight</a>
+      </div>
+      <div className="navbar__content level-right">
+        <a className="navbar__text navbar__text--item level-item button is-white" href="/">둘러보기</a>
+        {
+          // @ts-ignore
+          <div className="navbar__text navbar__text--item level-item button is-white" disabled>다운로드</div>
+        }
+        <hr className="navbar__text navbar__text--divider level-item" />
+        <a className="navbar__text navbar__text--item level-item button is-white" href="/auth/login">로그인</a>
+      </div>
+    </nav>
   );
 };
 

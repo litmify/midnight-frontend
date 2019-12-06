@@ -1,10 +1,35 @@
-.app-navbar {
-  a {
-    button {
-      background-color: white;
-      border-color: white;
-      color: black;
-      font-size: 1rem;
+.navbar__container {
+  width: 50%;
+  height: 50px;
+
+  border-bottom: 3px solid #eeeeee;
+}
+
+.navbar__text {
+  color: #333333;
+
+  &.navbar__text--title {
+    font-size: 1.2rem;
+    margin-left: 0.4rem;
+  }
+
+  &.navbar__text--divider {
+    background-color: #dddddd;
+    width: 1px;
+    height: 30%;
+  }
+
+  &.navbar__text--item {
+    &:hover {
+      background-color: rgba(55, 55, 55, 0.1);
+      transition: ease-in 120ms;
+      -webkit-transition: ease-in 120ms;
+    };
+
+    &:active {
+      background-color: rgba(55, 55, 55, 0.2);
+      transition: ease-in 120ms;
+      -webkit-transition: ease-in 120ms;
     }
   }
 }
