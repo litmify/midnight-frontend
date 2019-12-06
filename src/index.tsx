@@ -12,8 +12,8 @@ import RegisterPage from './pages/RegisterPage';
 ReactDOM.render(
   <BrowserRouter>
     <Route exact path="/" component={HomePage} />
-    <Route path="/auth/login" component={LoginPage} />
-    <Route path="/auth/register" component={RegisterPage} />
+    <Route exact path="/auth/login" component={LoginPage} />
+    <Route exact path="/auth/register" component={RegisterPage} />
   </BrowserRouter>,
   document.getElementById('root'),
 );

@@ -7,7 +7,7 @@ type Props = {
   setProcess: any;
 };
 
-const LoginFieldEmail = function({ email, setEmail, setProcess }: Props) {
+const RegisterFieldEmail = function({ email, setEmail, setProcess }: Props) {
   const [isMailSending, setIsMailSending] = React.useState(false);
   const [isErrorOnMailSending, setIsErrorOnMailSending] = React.useState(false);
   const [mailErrorMessage, setMailErrorMessage] = React.useState('');
@@ -16,13 +16,13 @@ const LoginFieldEmail = function({ email, setEmail, setProcess }: Props) {
     setEmail(e.target.value);
   };
 
-  const tryLogin = async function(this: any) {
-    // Prepairing sending login code email
+  const tryRegister = async function(this: any) {
+    // Prepairing sending register code email
     setIsMailSending(true);
     setIsErrorOnMailSending(false);
 
     await axios
-      .post(process.env.REACT_APP_API_URL + 'auth/login', {
+      .post(process.env.REACT_APP_API_URL + 'auth/register', {
         email,
       })
       .then(data => {
@@ -44,10 +44,10 @@ const LoginFieldEmail = function({ email, setEmail, setProcess }: Props) {
   };
 
   return (
-    <div className="login__content--before">
-      <p className="login__description">로그인하려면 이메일 주소를 입력하세요.</p>
+    <div className="register__content--before">
+      <p className="register__description">사용할 이메일 주소를 입력하세요.</p>
       <input
-        className="login__input input"
+        className="register__input input"
         type="email"
         placeholder="이메일"
         disabled={isMailSending}
@@ -55,14 +55,14 @@ const LoginFieldEmail = function({ email, setEmail, setProcess }: Props) {
         value={email}
       />
       {isErrorOnMailSending ? (
-        <p className="login__description--error has-text-danger">{mailErrorMessage}</p>
+        <p className="register__description--error has-text-danger">{mailErrorMessage}</p>
       ) : null}
       {!isMailSending ? (
-        <button onClick={tryLogin} className="login__button button is-fullwidth is-dark">
+        <button onClick={tryRegister} className="register__button button is-fullwidth is-dark">
           계속하기
         </button>
       ) : (
-        <button disabled={true} className="login__button button is-fullwidth is-dark is-loading">
+        <button disabled={true} className="register__button button is-fullwidth is-dark is-loading">
           계속하기
         </button>
       )}
@@ -70,4 +70,4 @@ const LoginFieldEmail = function({ email, setEmail, setProcess }: Props) {
   );
 };
 
-export default LoginFieldEmail;
+export default RegisterFieldEmail;

@@ -4,8 +4,7 @@ import './LoginField.scss';
 import LoginFieldEmail from './LoginFieldEmail';
 import LoginFieldCode from './LoginFieldCode';
 
-const LoginField = function(this: any) {
-
+const LoginField = function() {
   const [email, setEmail] = React.useState('');
   const [process, setProcess] = React.useState(1);
 
@@ -16,9 +15,15 @@ const LoginField = function(this: any) {
           <div className="card-content">
             <div className="login__content">
               <p className="login__header">로그인</p>
-              {process === 1 ? <LoginFieldEmail email={email} setEmail={setEmail} setProcess={setProcess}/> : process === 2 ? <LoginFieldCode email={email} /> : null}
-              <hr/>
-              <a className="login__a" href="/auth/register">계정이 없습니까?</a>
+              {process === 1 ? (
+                <LoginFieldEmail email={email} setEmail={setEmail} setProcess={setProcess} />
+              ) : process === 2 ? (
+                <LoginFieldCode email={email} />
+              ) : null}
+              <hr />
+              <a className="login__a" href="/auth/register">
+                계정이 없습니까?
+              </a>
             </div>
           </div>
         </div>
