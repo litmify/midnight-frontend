@@ -1,0 +1,7 @@
+{
+  "Template": {
+    "TemplateName": "Midnight-LoginCode",
+    "SubjectPart": "Please verify your email for Midnight",
+    "HtmlPart": "<body><h2 class='code-line' data-line-start=0 data-line-end=1>Dear {{username}},</h1><p class='has-line-data' data-line-start='2' data-line-end='4'>Thanks for using the midnight. This is the mail with verification code for your login.<br>Please copy and paste the login code below. The code expires in 30 minutes.</p><p class='has-line-data' data-line-start='5' data-line-end='6'><code style='background-color: #F9F2F4; color: #C72542; font-size: 1.3em;'>{{ code }}</code></p><p class='has-line-data' data-line-start='7' data-line-end='8'>If you are not processing the login process, you can ignore this mail.</p><p class='has-line-data' data-line-start='9' data-line-end='10'>Thanks.</p><br><hr><p class='has-line-data' data-line-start='11' data-line-end='13'><strong>midnight</strong><br>the best partner for writing</p></body>"
+  }
+}
