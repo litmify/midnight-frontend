@@ -26,9 +26,6 @@ const RegisterFieldCode = function({ email }: Props) {
     setIsRegisterCodeValidating(true);
     setIsErrorOnRegisterCodeValidation(false);
 
-    console.log(email);
-    console.log(registerCode);
-
     return await axios
       .post(process.env.REACT_APP_API_URL + 'auth/register/validate', {
         email,
@@ -38,6 +35,7 @@ const RegisterFieldCode = function({ email }: Props) {
         if (data.data.result) {
           try {
             localStorage.setItem('user', data.data.payload.token);
+            alert('회원가입을 완료하였습니다.');
             history.push('/');
           } catch (err) {
             setCodeErrorMessage(`올바른 접속이 아닙니다. 브라우저를 종료 후 다시 시도해주세요.`);

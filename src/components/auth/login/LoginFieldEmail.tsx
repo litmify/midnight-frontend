@@ -31,14 +31,13 @@ const LoginFieldEmail = function({ email, setEmail, setProcess }: Props) {
         }
       })
       .catch(err => {
+        setIsMailSending(false);
+        setIsErrorOnMailSending(true);
+        
         if (err.response.status === 400) {
           setMailErrorMessage('존재하지 않는 이메일입니다.');
-          setIsMailSending(false);
-          setIsErrorOnMailSending(true);
         } else {
           setMailErrorMessage(`예상치 못한 문제가 발생했습니다. 다시 시도해주세요.`);
-          setIsMailSending(false);
-          setIsErrorOnMailSending(true);
         }
       });
   };

@@ -24,9 +24,6 @@ const LoginFieldCode = function({ email }: Props) {
     setIsLoginCodeValidating(true);
     setIsErrorOnLoginCodeValidation(false);
 
-    console.log(email);
-    console.log(loginCode);
-
     return await axios
       .post(process.env.REACT_APP_API_URL + 'auth/login/validate', {
         email,
@@ -45,14 +42,13 @@ const LoginFieldCode = function({ email }: Props) {
         }
       })
       .catch(err => {
+        setIsLoginCodeValidating(false);
+        setIsErrorOnLoginCodeValidation(true);
+        
         if (err.response.status === 400) {
           setCodeErrorMessage('올바른 로그인 코드가 아닙니다.');
-          setIsLoginCodeValidating(false);
-          setIsErrorOnLoginCodeValidation(true);
         } else {
           setCodeErrorMessage(`예상치 못한 문제가 발생했습니다. 다시 시도해주세요.`);
-          setIsLoginCodeValidating(false);
-          setIsErrorOnLoginCodeValidation(true);
         }
       });
   };
