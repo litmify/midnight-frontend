@@ -1,11 +1,11 @@
 import * as React from 'react';
-import './WriteToolbar.scss';
+import './WriteEditor.scss';
 
 type Props = {
   writeEditor: any;
-};
+}
 
-const WriteToolbar = function({ writeEditor }: Props) {
+const WriteEditor = function({ writeEditor }: Props) {
   const [title, setTitle] = React.useState('');
 
   const handleTitleChange = (e: any) => {
@@ -14,22 +14,15 @@ const WriteToolbar = function({ writeEditor }: Props) {
     e.target.style.cssText = 'height:' + e.target.scrollHeight + 'px';
   };
 
-  const handleKeyPress = (e: any) => {
-    if (e.keyCode === 13) {
-      e.preventDefault();
-      writeEditor.current.focus();
-    }
-  };
-
   return (
-    <div className="WriteToolbar container" style={{ width: '80%' }}>
+    <div className="WriteEditor container" style={{ width: '80%' }}>
       <div className="columns">
-        <div className="column is-two-thirds">
+        <div className="column">
           <textarea
-            className="toolbar__title textarea has-fixed-size"
-            placeholder="여기에 제목을 입력하세요."
+            className="editor__container textarea has-fixed-size"
+            placeholder="여기에 내용을 입력하세요."
             onChange={handleTitleChange}
-            onKeyDown={handleKeyPress}
+            ref={writeEditor}
             rows={1}
             value={title}
           />
@@ -44,4 +37,4 @@ const WriteToolbar = function({ writeEditor }: Props) {
   );
 };
 
-export default WriteToolbar;
+export default WriteEditor;
