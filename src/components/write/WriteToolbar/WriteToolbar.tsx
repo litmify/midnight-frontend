@@ -17,7 +17,7 @@ const WriteToolbar = function({ writeEditor }: Props) {
   const handleKeyPress = (e: any) => {
     if (e.keyCode === 13) {
       e.preventDefault();
-      writeEditor.current.focus();
+      writeEditor.current.firstChild.firstChild.firstChild.focus();
     }
   };
 

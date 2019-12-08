@@ -1,9 +1,10 @@
 import * as React from 'react';
+import Quill from 'quill';
 import './WriteEditor.scss';
 
 type Props = {
   writeEditor: any;
-}
+};
 
 const WriteEditor = function({ writeEditor }: Props) {
   const [title, setTitle] = React.useState('');
@@ -14,24 +15,22 @@ const WriteEditor = function({ writeEditor }: Props) {
     e.target.style.cssText = 'height:' + e.target.scrollHeight + 'px';
   };
 
+  React.useEffect(() => {
+    const editor = new Quill('.editor', {
+      modules: {
+        toolbar: '.toolbar',
+      },
+      placeholder: '여기에 글을 입력하세요...',
+    });
+  });
+
   return (
     <div className="WriteEditor container" style={{ width: '80%' }}>
       <div className="columns">
         <div className="column">
-          <textarea
-            className="editor__container textarea has-fixed-size"
-            placeholder="여기에 내용을 입력하세요."
-            onChange={handleTitleChange}
-            ref={writeEditor}
-            rows={1}
-            value={title}
-          />
+          <div className="toolbar" />
+          <div className="editor" ref={writeEditor} />
         </div>
-        {/*
-        <div className="column toolbar__buttons" style={{ textAlign: 'right' }}>
-          <button className="toolbar__button button">첨삭하기</button>
-          <button className="toolbar__button button">발행하기</button>
-        </div>*/}
       </div>
     </div>
   );
