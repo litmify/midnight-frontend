@@ -1,8 +1,8 @@
 import * as React from 'react';
 import './RegisterField.scss';
 
-import RegisterFieldEmail from './RegisterFieldEmail';
-import RegisterFieldCode from './RegisterFieldCode';
+import RegisterFieldEmail from '../RegisterFieldEmail/RegisterFieldEmail';
+import RegisterFieldCode from '../RegisterFieldCode/RegisterFieldCode';
 
 const RegisterField = function() {
   const [email, setEmail] = React.useState('');

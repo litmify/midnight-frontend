@@ -8,12 +8,14 @@ import './index.scss';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
+import WritePage from './pages/WritePage';
 
 ReactDOM.render(
   <BrowserRouter>
     <Route exact path="/" component={HomePage} />
     <Route exact path="/auth/login" component={LoginPage} />
     <Route exact path="/auth/register" component={RegisterPage} />
+    <Route exact path="/write" component={WritePage} />
   </BrowserRouter>,
   document.getElementById('root'),
 );

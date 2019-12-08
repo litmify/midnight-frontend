@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
-import './LoginField.scss';
+
+import './LoginFieldCode.scss';
 
 type Props = {
   email: string;

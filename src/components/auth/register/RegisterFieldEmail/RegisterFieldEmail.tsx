@@ -2,6 +2,8 @@ import * as React from 'react';
 import * as joi from 'joi';
 import axios from 'axios';
 
+import './RegisterFieldEmail.scss';
+
 type Props = {
   email: string;
   setEmail: any;

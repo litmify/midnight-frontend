@@ -1,12 +1,13 @@
-.login__container {
-  width: 30%;
+.register__container {
+  width: 20%;
+  min-width: 400px;
 }
 
-.login__card {
+.register__card {
   width: 100%;
 }
 
-.login__header {
+.register__header {
   border-bottom: 3px solid #eeeeee;
   font-weight: 700;
   font-size: 2rem;
@@ -15,20 +16,20 @@
   text-align: left;
 }
 
-.login__divider {
+.register__divider {
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
 
-.login__button {
+.register__button {
   margin-top: 1rem;
 }
 
-.login__a {
+.register__a {
   color: #333333;
 }
 
-.login__description {
+.register__description {
   font-size: 1rem;
   text-align: left;
   margin-bottom: 0.5rem;

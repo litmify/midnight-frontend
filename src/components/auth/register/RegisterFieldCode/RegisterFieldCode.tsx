@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
-import './RegisterField.scss';
+
+import './RegisterFieldCode.scss';
 
 type Props = {
   email: string;

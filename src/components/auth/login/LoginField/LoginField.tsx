@@ -1,8 +1,8 @@
 import * as React from 'react';
 import './LoginField.scss';
 
-import LoginFieldEmail from './LoginFieldEmail';
-import LoginFieldCode from './LoginFieldCode';
+import LoginFieldEmail from '../LoginFieldEmail/LoginFieldEmail';
+import LoginFieldCode from '../LoginFieldCode/LoginFieldCode';
 
 const LoginField = function() {
   const [email, setEmail] = React.useState('');

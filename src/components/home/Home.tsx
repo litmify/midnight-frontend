@@ -1,5 +1,5 @@
 import * as React from 'react';
-import './HomeTemplate.scss';
+import './Home.scss';
 
 import Navigation from '../base/navigation/Navigation';
 
@@ -7,7 +7,7 @@ type Props = {
   children?: React.ReactNode;
 };
 
-const HomeTemplate = function({ children }: Props) {
+const Home = function({ children }: Props) {
   return (
     <div className="Home">
       <Navigation />
@@ -25,4 +25,4 @@ const HomeTemplate = function({ children }: Props) {
   );
 };
 
-export default HomeTemplate;
+export default Home;

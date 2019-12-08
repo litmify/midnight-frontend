@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Navigation from '../../base/navigation/Navigation';
-import RegisterField from './RegisterField';
+import RegisterField from './RegisterField/RegisterField';
 
 const Register = function() {
   return (

@@ -1,6 +1,8 @@
 import * as React from 'react';
 import axios from 'axios';
 
+import './LoginFieldEmail.scss';
+
 type Props = {
   email: string;
   setEmail: any;
@@ -14,6 +16,7 @@ const LoginFieldEmail = function({ email, setEmail, setProcess }: Props) {
 
   const handleEmail = function(e: any) {
     setEmail(e.target.value);
+    setIsErrorOnMailSending(false);
   };
 
   const tryLogin = async function(this: any) {

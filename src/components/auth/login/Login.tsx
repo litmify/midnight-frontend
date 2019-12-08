@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Navigation from '../../base/navigation/Navigation';
-import LoginField from './LoginField';
+import LoginField from './LoginField/LoginField';
 
 const Login = function() {
   return (

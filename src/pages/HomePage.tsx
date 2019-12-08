@@ -1,8 +1,8 @@
 import * as React from 'react';
-import HomeTemplate from '../components/home/HomeTemplate';
+import Home from '../components/home/Home';
 
 const HomePage = function() {
-  return <HomeTemplate />;
+  return <Home />;
 };
 
 export default HomePage;
