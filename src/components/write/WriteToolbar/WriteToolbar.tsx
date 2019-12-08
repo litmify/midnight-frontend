@@ -2,10 +2,11 @@ import * as React from 'react';
 import './WriteToolbar.scss';
 
 type Props = {
-  writeEditor: any;
+  quill: any;
 };
 
-const WriteToolbar = function({ writeEditor }: Props) {
+const WriteToolbar = function({ quill }: Props) {
+  const titleInput: any = React.useRef();
   const [title, setTitle] = React.useState('');
 
   const handleTitleChange = (e: any) => {
@@ -17,28 +18,39 @@ const WriteToolbar = function({ writeEditor }: Props) {
   const handleKeyPress = (e: any) => {
     if (e.keyCode === 13) {
       e.preventDefault();
-      writeEditor.current.firstChild.firstChild.firstChild.focus();
+      quill.focus();
     }
   };
 
+  const editorFunction = () => {
+    console.log(quill.getText());
+  };
+
+  React.useEffect(() => {
+    titleInput.current.focus();
+  }, []);
+
   return (
-    <div className="WriteToolbar container" style={{ width: '80%' }}>
+    <div className="WriteToolbar container">
       <div className="columns">
-        <div className="column is-two-thirds">
+        <div className="column is-8 is-offset-2">
           <textarea
             className="toolbar__title textarea has-fixed-size"
-            placeholder="여기에 제목을 입력하세요."
+            placeholder="제목을 입력하세요."
             onChange={handleTitleChange}
             onKeyDown={handleKeyPress}
+            ref={titleInput}
             rows={1}
             value={title}
           />
         </div>
-        {/*
-        <div className="column toolbar__buttons" style={{ textAlign: 'right' }}>
-          <button className="toolbar__button button">첨삭하기</button>
-          <button className="toolbar__button button">발행하기</button>
-        </div>*/}
+
+        <div className="column is-2 toolbar__buttons" style={{ textAlign: 'right' }}>
+          <div>
+            <button className="toolbar__button button is-secondary" style={{marginRight: '1rem'}} onClick={editorFunction}>설정</button>
+            <button className="toolbar__button button is-primary">작성</button>
+          </div>
+        </div>
       </div>
     </div>
   );

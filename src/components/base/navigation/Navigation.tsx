@@ -14,6 +14,7 @@ const Navigation = function() {
           <div className="navbar__text navbar__text--item level-item button is-white" disabled>다운로드</div>
         }
         <hr className="navbar__text navbar__text--divider level-item" />
+        <a className="navbar__text navbar__text--item level-item button is-white" href="/auth/login">내 작품</a>
         <a className="navbar__text navbar__text--item level-item button is-white" href="/auth/login">로그인</a>
       </div>
     </nav>

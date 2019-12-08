@@ -1,3 +1,5 @@
+@import url('//cdn.quilljs.com/1.3.6/quill.bubble.css');
+
 .editor {
   font-family: 'Noto Sans KR';
   font-size: 1.5rem;
@@ -19,4 +21,25 @@
   &:active {
     box-shadow: none;
   }
+}
+
+.ql-editor {
+  margin-right: 3rem;
+  padding: 0.1rem;
+  padding-bottom: 13rem;
+}
+
+.ql-editor.ql-blank::before {
+  font-style: normal;
+  margin-left: -0.9rem;
+  color: rgb(169, 169, 169);
+}
+
+::-moz-selection {
+  /* Code for Firefox */
+  background: rgba(140, 198, 237, 0.8);
+}
+
+::selection {
+  background: rgba(140, 198, 237, 0.8);
 }

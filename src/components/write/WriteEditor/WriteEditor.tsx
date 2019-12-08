@@ -3,35 +3,34 @@ import Quill from 'quill';
 import './WriteEditor.scss';
 
 type Props = {
-  writeEditor: any;
+  setQuill: any;
 };
 
-const WriteEditor = function({ writeEditor }: Props) {
-  const [title, setTitle] = React.useState('');
-
-  const handleTitleChange = (e: any) => {
-    setTitle(e.target.value);
-    e.target.style.cssText = 'height: auto; padding: 0;';
-    e.target.style.cssText = 'height:' + e.target.scrollHeight + 'px';
-  };
-
+const WriteEditor = function({ setQuill }: Props) {
   React.useEffect(() => {
-    const editor = new Quill('.editor', {
+    // Setup Quill
+    const quill = new Quill('.editor', {
+      bounds: '.WriteEditor',
       modules: {
-        toolbar: '.toolbar',
+        toolbar: [{ header: [1, 2, 3, false] }, 'bold', 'italic', 'underline', 'strike'],
       },
-      placeholder: '여기에 글을 입력하세요...',
+      placeholder: '본문을 입력하세요.',
+      theme: 'bubble',
     });
-  });
+    setQuill(quill);
+
+    // For Linting
+    quill.on('text-change', function(delta, oldDelta, source) {
+      console.log(delta);
+      console.log(oldDelta);
+      console.log(source);
+    });
+  }, []);
 
   return (
-    <div className="WriteEditor container" style={{ width: '80%' }}>
-      <div className="columns">
-        <div className="column">
-          <div className="toolbar" />
-          <div className="editor" ref={writeEditor} />
-        </div>
-      </div>
+    <div className="WriteEditor">
+      <div className="toolbar" />
+      <div className="editor" />
     </div>
   );
 };
