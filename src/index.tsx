@@ -11,6 +11,8 @@ import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import WritePage from './pages/WritePage';
+import MPage from './pages/MyPage';
+import ReadPage from './pages/ReadPage';
 
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
@@ -28,6 +30,12 @@ ReactDOM.render(
       <Route exact path="/auth/register" component={RegisterPage} />
       <Route exact path="/write">
         <AuthRoute store={store} exact path="/write" component={WritePage} />
+      </Route>
+      <Route path="/read/:id">
+        <AuthRoute store={store} exact={false} path="/read/:id" component={ReadPage} />
+      </Route>
+      <Route exact path="/mypage">
+        <AuthRoute store={store} exact path="/mypage" component={MPage} />
       </Route>
     </BrowserRouter>
   </Provider>,

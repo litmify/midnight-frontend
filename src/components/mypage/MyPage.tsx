@@ -1,12 +1,16 @@
 import * as React from 'react';
 import axios from 'axios';
 
-import './Home.scss';
+import '../home/Home.scss';
 
 import Navigation from '../base/navigation/Navigation';
 import { useHistory } from 'react-router';
 
-const Home = function() {
+type Props = {
+  children?: React.ReactNode;
+};
+
+const MyPage = function({ children }: Props) {
   const history = useHistory();
   const loadMoreButton: any = React.useRef();
   const [end, setEnd] = React.useState(false);
@@ -19,23 +23,25 @@ const Home = function() {
 
   const getPost = async function() {
     axios
-      .get(process.env.REACT_APP_API_URL + 'post?postIndex=' + skip, {
+      .get(process.env.REACT_APP_API_URL + 'post?owner=true', {
         headers: { cilic: localStorage.getItem('cilic') },
       })
       .then(res => {
+        console.log(res);
+
         if (res.data.payload.end) {
           loadMoreButton.current.innerHTML = '모두 불러왔습니다.';
           setEnd(true);
           return;
         }
 
-        res.data.payload.posts.forEach((post: any) => {
+        res.data.payload.forEach((post: any) => {
           let d = new Date(post.createdAt);
           post.createdAt = d.toLocaleDateString() + ' ' + d.toLocaleTimeString();
         });
 
         const temp = posts;
-        const r = temp.concat(res.data.payload.posts);
+        const r = temp.concat(res.data.payload);
         setPosts(r);
         setSkip(skip + 9);
       })
@@ -47,10 +53,10 @@ const Home = function() {
   };
 
   return (
-    <div className="Home">
+    <div className="MyPage">
       <Navigation />
       <div className="container" style={{ marginTop: '10rem', width: '50%' }}>
-        <h1 style={{ fontWeight: 800, fontSize: '2rem', marginBottom: '1rem' }}>모아보기</h1>
+        <h1 style={{ fontWeight: 800, fontSize: '2rem', marginBottom: '1rem' }}>내 글</h1>
         <div className="columns is-multiline">
           {posts.map((post: any, i) => {
             return (
@@ -100,4 +106,4 @@ const Home = function() {
   );
 };
 
-export default Home;
+export default MyPage;

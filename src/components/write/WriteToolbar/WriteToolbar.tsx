@@ -1,14 +1,21 @@
 import * as React from 'react';
 import './WriteToolbar.scss';
+import { useHistory } from 'react-router';
+import axios from 'axios';
 
 type Props = {
   quill: any;
+  isReadMode: boolean;
+  titleRead?: string;
+  id?: string;
 };
 
-const WriteToolbar = function({ quill }: Props) {
+const WriteToolbar = function({ quill, isReadMode, titleRead, id }: Props) {
   const titleInput: any = React.useRef();
   const editorSettingModal: any = React.useRef();
   const [title, setTitle] = React.useState('');
+  const [isOwner, setIsOwner] = React.useState(false);
+  const history = useHistory();
 
   const handleTitleChange = (e: any) => {
     setTitle(e.target.value);
@@ -24,7 +31,6 @@ const WriteToolbar = function({ quill }: Props) {
   };
 
   const openEditorSetting = () => {
-    console.log(quill.getText());
     editorSettingModal.current.className = 'modal is-active';
   };
 
@@ -34,7 +40,75 @@ const WriteToolbar = function({ quill }: Props) {
     if (!isConfirmed) return;
   };
 
+  const goBack = () => {
+    history.push('/mypage');
+  };
+
+  const publish = async () => {
+    if (isReadMode) return;
+
+    if (!title) {
+      alert('제목을 입력해주세요.');
+      return;
+    }
+
+    const axiosBody = {
+      title: title,
+      isPublic: true,
+      body: quill.getContents(),
+    };
+    console.log(axiosBody);
+    await axios
+      .post(process.env.REACT_APP_API_URL + 'post/create', axiosBody, {
+        headers: { cilic: localStorage.getItem('cilic') },
+      })
+      .then(res => {
+        if (res.data.result) {
+          alert('글을 발행하였습니다.');
+          history.push('/mypage');
+        } else {
+          alert('예상치 못한 문제가 발생하였습니다.\n잠시 후 다시 시도해주세요.');
+        }
+      })
+      .catch(() => {
+        alert('예상치 못한 문제가 발생하였습니다.\n잠시 후 다시 시도해주세요.');
+      });
+  };
+
+  const checkOwner = async function() {
+    const r = await axios
+      .get(process.env.REACT_APP_API_URL + 'post/check?postId=' + id, {
+        headers: { cilic: localStorage.getItem('cilic') },
+      })
+      .then(res => {
+        return res.data.result;
+      })
+      .catch(() => false);
+    setIsOwner(r);
+  };
+
+  const deletePost = async function() {
+    await axios
+      .post(
+        process.env.REACT_APP_API_URL + 'post/delete',
+        { postId: id },
+        { headers: { cilic: localStorage.getItem('cilic') } },
+      )
+      .then(res => {
+        if (res.data.result) {
+          alert('정상적으로 삭제되었습니다.');
+          history.push('/');
+        } else {
+          alert('예상치 못한 문제가 발생하였습니다.\n잠시 후 다시 시도해주세요.');
+        }
+      })
+      .catch(() => {
+        alert('예상치 못한 문제가 발생하였습니다.\n잠시 후 다시 시도해주세요.');
+      });
+  };
+
   React.useEffect(() => {
+    checkOwner();
     titleInput.current.focus();
   }, []);
 
@@ -49,13 +123,19 @@ const WriteToolbar = function({ quill }: Props) {
             onKeyDown={handleKeyPress}
             ref={titleInput}
             rows={1}
-            value={title}
+            value={isReadMode ? titleRead : title}
+            disabled={isReadMode}
           />
         </div>
 
-        <div className="column is-2 toolbar__buttons" style={{ textAlign: 'right' }}>
-          <div>
-            {/*
+        {!isReadMode ? (
+          <>
+            <div
+              className="column is-2 toolbar__buttons"
+              style={{ textAlign: 'left', paddingLeft: 0, marginLeft: '-3rem' }}
+            >
+              <div>
+                {/*
             <button
               className="toolbar__button button is-secondary"
               style={{ marginRight: '1rem' }}
@@ -64,9 +144,40 @@ const WriteToolbar = function({ quill }: Props) {
               첨삭
             </button>
             */}
-            <button className="toolbar__button button is-primary">작성</button>
-          </div>
-        </div>
+                <button
+                  className="toolbar__button button is-primary"
+                  style={{ marginRight: '1rem' }}
+                  onClick={() => publish()}
+                >
+                  발행
+                </button>
+                <button className="toolbar__button button" onClick={() => goBack()}>
+                  취소
+                </button>
+              </div>
+            </div>{' '}
+          </>
+        ) : (
+          <>
+            <div
+              className="column is-2 toolbar__buttons"
+              style={{ textAlign: 'left', paddingLeft: 0, marginLeft: '-3rem' }}
+            >
+              {isOwner ? (
+                <button
+                  className="toolbar__button button is-danger"
+                  style={{ marginRight: '1rem' }}
+                  onClick={() => deletePost()}
+                >
+                  삭제
+                </button>
+              ) : null}
+              <button className="toolbar__button button" onClick={() => goBack()}>
+                돌아가기
+              </button>
+            </div>
+          </>
+        )}
       </div>
 
       <div className="modal" ref={editorSettingModal}>

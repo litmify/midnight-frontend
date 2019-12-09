@@ -32,6 +32,7 @@ const AuthRoute = function({ store, exact, path, component }: Props) {
         return true;
       })
       .catch(() => {
+        localStorage.removeItem('cilic');
         store.dispatch(setAuthToken(''));
         store.dispatch(setAuthUsername(''));
         return false;
