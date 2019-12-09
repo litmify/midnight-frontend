@@ -25,6 +25,8 @@ const WriteEditor = function({ setQuill }: Props) {
       console.log(oldDelta);
       console.log(source);
     });
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

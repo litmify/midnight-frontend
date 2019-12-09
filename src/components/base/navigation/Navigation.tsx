@@ -8,13 +8,13 @@ const Navigation = function() {
         <a className="navbar__text navbar__text--title level-item" href="/">midnight</a>
       </div>
       <div className="navbar__content level-right">
-        <a className="navbar__text navbar__text--item level-item button is-white" href="/">둘러보기</a>
+        <a className="navbar__text navbar__text--item level-item button is-white" href="/overview">둘러보기</a>
         {
           // @ts-ignore
           <div className="navbar__text navbar__text--item level-item button is-white" disabled>다운로드</div>
         }
         <hr className="navbar__text navbar__text--divider level-item" />
-        <a className="navbar__text navbar__text--item level-item button is-white" href="/auth/login">내 작품</a>
+        <a className="navbar__text navbar__text--item level-item button is-white" href="/work">내 작품</a>
         <a className="navbar__text navbar__text--item level-item button is-white" href="/auth/login">로그인</a>
       </div>
     </nav>

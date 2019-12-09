@@ -35,7 +35,7 @@ const RegisterFieldCode = function({ email }: Props) {
       .then(data => {
         if (data.data.result) {
           try {
-            localStorage.setItem('user', data.data.payload.token);
+            localStorage.setItem('cilic', data.data.payload.token);
             alert('회원가입을 완료하였습니다.');
             history.push('/');
           } catch (err) {

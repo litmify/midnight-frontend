@@ -33,7 +33,7 @@ const LoginFieldCode = function({ email }: Props) {
       .then(data => {
         if (data.data.result) {
           try {
-            localStorage.setItem('user', data.data.payload.token);
+            localStorage.setItem('cilic', data.data.payload.token);
             history.push('/');
           } catch (err) {
             setCodeErrorMessage(`올바른 접속이 아닙니다. 브라우저를 종료 후 다시 시도해주세요.`);
