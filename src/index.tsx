@@ -5,18 +5,32 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import 'bulma/bulma.sass';
 import './index.scss';
 
+import AuthRoute from './components/base/authroute/AuthRoute';
+
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import WritePage from './pages/WritePage';
 
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import rootReducer from './store/modules';
+
+const store = createStore(rootReducer);
+
 ReactDOM.render(
-  <BrowserRouter>
-    <Route exact path="/" component={HomePage} />
-    <Route exact path="/auth/login" component={LoginPage} />
-    <Route exact path="/auth/register" component={RegisterPage} />
-    <Route exact path="/write" component={WritePage} />
-  </BrowserRouter>,
+  <Provider store={store}>
+    <BrowserRouter>
+      <Route exact path="/">
+        <AuthRoute store={store} exact path="/" component={HomePage} />
+      </Route>
+      <Route exact path="/auth/login" component={LoginPage} />
+      <Route exact path="/auth/register" component={RegisterPage} />
+      <Route exact path="/write">
+        <AuthRoute store={store} exact path="/write" component={WritePage} />
+      </Route>
+    </BrowserRouter>
+  </Provider>,
   document.getElementById('root'),
 );
 

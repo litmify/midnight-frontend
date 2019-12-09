@@ -55,6 +55,7 @@ const WriteToolbar = function({ quill }: Props) {
 
         <div className="column is-2 toolbar__buttons" style={{ textAlign: 'right' }}>
           <div>
+            {/*
             <button
               className="toolbar__button button is-secondary"
               style={{ marginRight: '1rem' }}
@@ -62,6 +63,7 @@ const WriteToolbar = function({ quill }: Props) {
             >
               첨삭
             </button>
+            */}
             <button className="toolbar__button button is-primary">작성</button>
           </div>
         </div>

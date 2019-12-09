@@ -17,7 +17,9 @@ const Write = function() {
               <WriteEditor setQuill={setQuill} />
             </div>
             <div className="column is-2">
+              {/*
               <WriteSidebar quill={quill} />
+              */}
             </div>
           </div>
         </div>
