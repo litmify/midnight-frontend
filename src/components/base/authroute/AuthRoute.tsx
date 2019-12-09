@@ -19,10 +19,6 @@ const AuthRoute = function({ store, exact, path, component }: Props) {
   const loadScreen: any = useRef();
   const history = useHistory();
 
-  useEffect(() => {
-    checkAuth(store);
-  }, []);
-
   const checkAuth = async (store: any) => {
     const token: string = localStorage.getItem('cilic') || '';
 
@@ -47,6 +43,10 @@ const AuthRoute = function({ store, exact, path, component }: Props) {
     }
     if (loadScreen.current) loadScreen.current.className = '';
   };
+
+  useEffect(() => {
+    checkAuth(store);
+  }, []);
 
   return (
     <>
