@@ -17,9 +17,6 @@ const Navigation = function() {
         </a>
       </div>
       <div className="navbar__content level-right">
-        <a className="navbar__text navbar__text--item level-item button is-white" href="/random">
-          랜덤 글 읽기
-        </a>
         {
           // @ts-ignore
           <div className="navbar__text navbar__text--item level-item button is-white" disabled>
